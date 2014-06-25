@@ -755,6 +755,9 @@ class Cmssw(JobType):
         txt += 'elif [ $middleware == PBS ] || [ $middleware == PBSV2 ] || [ $middleware == SLURM ]; then\n'
         txt += self.wsSetupCMSLCGEnvironment_()
 
+	txt += 'elif [ $middleware == CONDOR ]; then\n'
+	txt += self.wsSetupCMSLCGEnvironment_()
+
         txt += 'fi\n'
 
         # Prepare JobType-specific part
@@ -1111,6 +1114,10 @@ class Cmssw(JobType):
         txt += '        echo "ERROR ==> CMS software dir not found on WN `hostname`"\n'
         txt += '        job_exit_code=10031\n'
         txt += '        func_exit\n'
+        txt += '    elif [ -f $CVMFS/cms.cern.ch/cmsset_default.sh ] ; then \n'
+        txt += '        source $CVMFS/cms.cern.ch/cmsset_default.sh\n'
+        txt += '    elif [ -f /cvmfs/cms.cern.ch/cmsset_default.sh ] ; then \n'
+        txt += '        source /cvmfs/cms.cern.ch/cmsset_default.sh\n'
         txt += '    else\n'
         txt += '        echo "Sourcing environment... "\n'
         txt += '        if [ ! -s $VO_CMS_SW_DIR/cmsset_default.sh ] ;then\n'
