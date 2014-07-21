@@ -755,8 +755,8 @@ class Cmssw(JobType):
         txt += 'elif [ $middleware == PBS ] || [ $middleware == PBSV2 ] || [ $middleware == SLURM ]; then\n'
         txt += self.wsSetupCMSLCGEnvironment_()
 
-	txt += 'elif [ $middleware == CONDOR ]; then\n'
-	txt += self.wsSetupCMSLCGEnvironment_()
+        txt += 'elif [ $middleware == CONDOR ]; then\n'
+        txt += self.wsSetupCMSLCGEnvironment_()
 
         txt += 'fi\n'
 
@@ -1111,9 +1111,9 @@ class Cmssw(JobType):
         txt += '    export SCRAM_ARCH='+self.executable_arch+'\n'
         txt += '    export BUILD_ARCH='+self.executable_arch+'\n'
         txt += '    if [ ! $VO_CMS_SW_DIR ] ;then\n'
-	txt += '      if [ -f /cvmfs/cms.cern.ch/cmsset_default.sh ] ;then\n'
-	txt += '        source /cvmfs/cms.cern.ch/cmsset_default.sh\n'
-	txt += '      else\n'
+        txt += '      if [ -f /cvmfs/cms.cern.ch/cmsset_default.sh ] ;then\n'
+        txt += '        source /cvmfs/cms.cern.ch/cmsset_default.sh\n'
+        txt += '      else\n'
         txt += '        echo "ERROR ==> CMS software dir not found on WN `hostname`"\n'
         txt += '        job_exit_code=10031\n'
         txt += '        func_exit\n'
